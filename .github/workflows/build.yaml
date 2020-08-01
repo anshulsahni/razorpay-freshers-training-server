@@ -1,0 +1,33 @@
+name: Build App
+on: [push]
+
+jobs:
+  build:
+    name: Build docker image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Docker build and push
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKER_REGISTRY_USERNAME }}
+          password: ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
+          registry: https://docker.pkg.github.com
+          repository: anshulsahni/razorpay-freshers-training-server/app:latest
+  deploy:
+    name: Deploy to heroku
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build push and deploy
+        uses: akhileshns/heroku-deploy@v3.4.6
+        with:
+          heroku_email: ${{ secrets.HEROKU_EMAIL }}
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
+          usedocker: true
+          docker_heroku_process_type: web
