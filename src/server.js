@@ -1,13 +1,15 @@
 const fastify = require('fastify');
 
+const indexRoute = require('./routes/index');
+const invoiceRoute = require('./routes/invoice');
+
 const server = fastify({
   logger: true,
   ignoreTrailingSlash: true,
 });
 
-server.get('/', async (request, reply) => {
-  return { hello: 'world' };
-});
+server.register(indexRoute);
+server.register(invoiceRoute);
 
 startServer();
 

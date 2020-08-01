@@ -1,2 +1,5 @@
 # Library files
 node_modules/
+
+# Local env files
+config/env.dev.js
