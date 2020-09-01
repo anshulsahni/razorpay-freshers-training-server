@@ -10,7 +10,7 @@ const makeRequestToRzpApi = async ({
   payload,
 }) => {
   const { rzpKeyId, rzpKeySecret } = environment[team];
-  const path = url.substring(url.lastIndexOf('/'));
+  const path = url.substring(url.indexOf('/', 5));
 
   const response = await axios({
     url: rzpApiUrl + path,
