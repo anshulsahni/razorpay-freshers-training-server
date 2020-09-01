@@ -3,6 +3,7 @@ const fastify = require('fastify');
 const indexRoute = require('./routes/index');
 const invoiceRoute = require('./routes/invoice');
 const customerRoute = require('./routes/customer');
+const itemRoute = require('./routes/item');
 
 const server = fastify({
   logger: true,
@@ -12,6 +13,7 @@ const server = fastify({
 server.register(indexRoute);
 server.register(invoiceRoute);
 server.register(customerRoute);
+server.register(itemRoute);
 
 startServer();
 
