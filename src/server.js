@@ -1,5 +1,7 @@
 const fastify = require('fastify');
 
+const cors = require('./cors');
+
 const indexRoute = require('./routes/index');
 const invoiceRoute = require('./routes/invoice');
 const customerRoute = require('./routes/customer');
@@ -10,6 +12,7 @@ const server = fastify({
   ignoreTrailingSlash: true,
 });
 
+server.register(cors);
 server.register(indexRoute);
 server.register(invoiceRoute);
 server.register(customerRoute);
