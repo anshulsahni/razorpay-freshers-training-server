@@ -38,9 +38,9 @@ const formRequestForRzp = async (request) => {
       method,
       payload,
     });
-  } catch (e) {
-    console.log({e})
-    throw { statusCode: 400, error: 'Some Error occured' };
+  } catch (error) {
+    console.log({error})
+    throw { statusCode: 400, error: error.response.data.error };
   }
 }
 
